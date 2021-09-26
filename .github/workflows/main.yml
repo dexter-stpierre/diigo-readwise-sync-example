@@ -10,6 +10,7 @@ on:
 jobs:
   Sync:
     runs-on: ubuntu-latest
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Sync Diigo Highlights to Readwise
@@ -25,10 +26,6 @@ jobs:
           diigoPassword: ${{ secrets.DIIGO_PASSWORD }}
           # Token used to access Readwise API
           readwiseToken: ${{ secrets.READWISE_TOKEN }}
-          # Comma seperated list of tags that you would like to sync to Readwise. Leave blank to sync all highlights. Example "readwise,favorite"
-          diigoFilterTags: # optional
-          # Name of file in your repo to save last synced timestamp to
-          timestampFileName: # optional, default is lastSync.txt
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Updated last sync file
